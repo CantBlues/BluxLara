@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DailyTask;
+use App\Http\Controllers\TaskTypeController;
 use App\Http\Controllers\VideoController;
 
 /*
@@ -22,5 +23,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/task/mark', [DailyTask::class,'mark']);
 Route::get('/tasks/daily/{timestamp}', [DailyTask::class,'viewDaily']);
+Route::get("/tasks/contribution/{type}",[]);
+
+Route::get("/tasktypes",[TaskTypeController::class,'getTypes']);
 
 Route::get('/video/{id}', [VideoController::class,'getById']);
