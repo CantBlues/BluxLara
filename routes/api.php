@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DailyTask;
+use App\Http\Controllers\VideoController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,3 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/task/mark', [DailyTask::class,'mark']);
 Route::get('/tasks/daily/{timestamp}', [DailyTask::class,'viewDaily']);
+
+Route::get('/video/{id}', [VideoController::class,'getById']);
