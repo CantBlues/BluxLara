@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use App\Models\TaskType;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DailyTask extends Controller
@@ -28,7 +29,29 @@ class DailyTask extends Controller
         return $this->success($data);
     }
 
-    public function contribution($type){
+    public function contribution(Request $q){
+        $type = $q->input("type");
+        if($type == "Sum"){
+            $data = Task::selectRaw("sum(task_types.weight) as sum,tasks.date")->where("mark",true)
+                ->join("task_types","tasks.type_id","=","task_types.id")->groupBy("date")->get();
+            return $this->success($data);
+        }else{
+            $data = [];
+            $typeId = TaskType::where("name",$type)->pluck("id");
+            if($typeId) $data = Task::where("mark",true)->where("type_id",$typeId)->get();
+            return $this->success($data);
+        }
+    }
 
+    public function getMonthData(){
+        $thismonth = [Carbon::now()->subDays(30),Carbon::now()];
+        $lastmonth = [Carbon::now()->subDays(60),Carbon::now()->subDays(30)];
+        $data["this_month"] = TaskType::selectRaw("count(tasks.id) as times,task_types.name")
+            ->join("tasks","task_types.id","=","tasks.type_id")->whereBetween("tasks.date",$thismonth)
+            ->groupBy("tasks.type_id")->where("tasks.mark",true)->get();
+        $data["last_month"] = TaskType::selectRaw("count(tasks.id) as times,task_types.name")
+            ->join("tasks","task_types.id","=","tasks.type_id")->whereBetween("tasks.date",$lastmonth)
+            ->groupBy("tasks.type_id")->where("tasks.mark",true)->get();
+        return $this->success(($data));
     }
 }

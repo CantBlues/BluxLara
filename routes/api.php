@@ -23,7 +23,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/task/mark', [DailyTask::class,'mark']);
 Route::get('/tasks/daily/{timestamp}', [DailyTask::class,'viewDaily']);
-Route::get("/tasks/contribution/{type}",[]);
+Route::get("/tasks/contribution",[DailyTask::class,'contribution']);
+Route::get("/tasks/compare2month",[DailyTask::class,'getMonthData']);
 
 Route::get("/tasktypes",[TaskTypeController::class,'getTypes']);
 
