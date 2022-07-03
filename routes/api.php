@@ -27,5 +27,7 @@ Route::get("/tasks/contribution",[DailyTask::class,'contribution']);
 Route::get("/tasks/compare2month",[DailyTask::class,'getMonthData']);
 
 Route::get("/tasktypes",[TaskTypeController::class,'getTypes']);
+Route::post("/task/types/order",[TaskTypeController::class,'setOrder']);
+Route::post("/task/type/addoredit",[TaskTypeController::class,'addOrEditType']);
 
 Route::get('/video/{id}', [VideoController::class,'getById']);

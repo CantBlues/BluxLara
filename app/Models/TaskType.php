@@ -10,4 +10,5 @@ class TaskType extends Model
     use HasFactory;
 
     public $timestamps = false;
+    protected $fillable = ["sort","name"];
 }
