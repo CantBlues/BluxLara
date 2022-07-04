@@ -22,6 +22,7 @@ class TaskTypeController extends Controller {
         $type = TaskType::firstOrNew($where);
         $type->name = $info["name"];
         $type->weight = $info["weight"];
+        $type->classify = $info["classify"];
         $type->save();
         return $this->success($type);
     }
