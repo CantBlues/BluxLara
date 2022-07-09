@@ -13,15 +13,16 @@ class PhoneUsage extends Controller {
         return $this->success($data);
     }
 
-    public function getUsages() {
-        $data = ModelsPhoneUsage::first();
+    public function getUsagesByAppId($id) {
+        $dateNode = date("Ymd", strtotime("-1 year"));;
+        $data = ModelsPhoneUsage::where("node", ">=",$dateNode)->where("appid",$id)->get();
         return $this->success($data);
     }
 
     public function dealUsages(Request $request) {
         $st = microtime(true);
-        
-        $lastDate = ModelsPhoneUsage::orderBy("id","desc")->value("node");
+
+        $lastDate = ModelsPhoneUsage::orderBy("id", "desc")->value("node");
 
         foreach ($request->input() as $dailyUsage) {
             $dateNode = $dailyUsage["node"];
@@ -35,5 +36,13 @@ class PhoneUsage extends Controller {
         $et = microtime(true);
 
         return $this->success($et -  $st);
+    }
+
+    public function editApp(Request $request){
+        $input = $request->input();
+        $id = $input["id"];
+        $name = $input["name"];
+        $result = PhoneApp::where("id",$id)->update(["name"=>$name]);
+        $this->success($result);
     }
 }

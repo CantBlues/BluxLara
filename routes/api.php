@@ -36,6 +36,8 @@ Route::get('/video/{id}', [VideoController::class, 'getById']);
 
 
 Route::get("/phone/apps", [PhoneUsage::class, "getApps"]);
-Route::get("/phone/usages", [PhoneUsage::class, "getUsages"]);
+Route::post("/phone/app/edit",[PhoneUsage::class,"editApp"]);
+Route::get("/phone/usages/{appid}", [PhoneUsage::class, "getUsagesByAppId"]);
 
 Route::post("/phone/usages",[PhoneUsage::class, "dealUsages"]);
+
