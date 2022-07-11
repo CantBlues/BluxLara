@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PhoneApp;
 use App\Models\PhoneUsage as ModelsPhoneUsage;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PhoneUsage extends Controller {
@@ -22,11 +23,12 @@ class PhoneUsage extends Controller {
     public function dealUsages(Request $request) {
         $st = microtime(true);
 
-        $lastDate = ModelsPhoneUsage::orderBy("id", "desc")->value("node");
+        $rencently = Carbon::now()->subDays(9);
+        $existNode = ModelsPhoneUsage::where('appid',PhoneApp::where("package_name","android")->value("id"))->where("node",">=",$rencently)->pluck('node');
 
         foreach ($request->input() as $dailyUsage) {
             $dateNode = $dailyUsage["node"];
-            if ($lastDate < $dateNode) {
+            if (!$existNode->contains($dateNode)) {
                 $usageList = $dailyUsage["data"];
                 $ok = ModelsPhoneUsage::saveOneDay($dateNode, $usageList);
                 if (!$ok) return $this->failed("");
@@ -43,6 +45,12 @@ class PhoneUsage extends Controller {
         $id = $input["id"];
         $name = $input["name"];
         $result = PhoneApp::where("id",$id)->update(["name"=>$name]);
-        $this->success($result);
+        return $this->success($result);
+    }
+
+    public function getRecentlyNode(){
+        $rencently = Carbon::now()->subDays(9);
+        $data = ModelsPhoneUsage::where('appid',PhoneApp::where("package_name","android")->value("id"))->where("node",">=",$rencently)->pluck('node');
+        return $this->success($data);
     }
 }
