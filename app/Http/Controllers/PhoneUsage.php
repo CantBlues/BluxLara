@@ -6,6 +6,7 @@ use App\Models\PhoneApp;
 use App\Models\PhoneUsage as ModelsPhoneUsage;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 
 class PhoneUsage extends Controller {
     public function getApps() {
@@ -16,20 +17,21 @@ class PhoneUsage extends Controller {
 
     public function getUsagesByAppId($id) {
         $dateNode = date("Ymd", strtotime("-1 year"));;
-        $data = ModelsPhoneUsage::where("node", ">=",$dateNode)->where("appid",$id)->get();
+        $data = ModelsPhoneUsage::where("node", ">=", $dateNode)->where("appid", $id)->get();
         return $this->success($data);
     }
 
     public function dealUsages(Request $request) {
         $st = microtime(true);
 
-        $rencently = Carbon::now()->subDays(9);
-        $existNode = ModelsPhoneUsage::where('appid',PhoneApp::where("package_name","android")->value("id"))->where("node",">=",$rencently)->pluck('node');
+        $existNode = $this->recentlyNode();
 
         foreach ($request->input() as $dailyUsage) {
             $dateNode = $dailyUsage["node"];
-            if (!$existNode->contains($dateNode)) {
-                $usageList = $dailyUsage["data"];
+            $dateNode = Carbon::parseFromLocale($dateNode)->format("Y-m-d");
+            $dateNode = date($dateNode);
+            $usageList = $dailyUsage["data"];
+            if (!$existNode->contains($dateNode) && count($usageList) > 1) {
                 $ok = ModelsPhoneUsage::saveOneDay($dateNode, $usageList);
                 if (!$ok) return $this->failed("");
             }
@@ -40,17 +42,22 @@ class PhoneUsage extends Controller {
         return $this->success($et -  $st);
     }
 
-    public function editApp(Request $request){
+    public function editApp(Request $request) {
         $input = $request->input();
         $id = $input["id"];
         $name = $input["name"];
-        $result = PhoneApp::where("id",$id)->update(["name"=>$name]);
+        $result = PhoneApp::where("id", $id)->update(["name" => $name]);
         return $this->success($result);
     }
 
-    public function getRecentlyNode(){
-        $rencently = Carbon::now()->subDays(9);
-        $data = ModelsPhoneUsage::where('appid',PhoneApp::where("package_name","android")->value("id"))->where("node",">=",$rencently)->pluck('node');
+    public function recentlyNode() {
+        $recently = Carbon::now()->startOfDay()->subDays(10);
+        $data = ModelsPhoneUsage::where('appid', PhoneApp::where("package_name", "android")->value("id"))->where("node", ">=", $recently)->pluck('node');
+        return $data;
+    }
+
+    public function getRecentlyNode() {
+        $data = $this->recentlyNode();
         return $this->success($data);
     }
 }
