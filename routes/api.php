@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Audio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DailyTask;
@@ -42,3 +43,4 @@ Route::get("/phone/usages/recently/node",[PhoneUsage::class,"getRecentlyNode"]);
 
 Route::post("/phone/usages",[PhoneUsage::class, "dealUsages"]);
 
+Route::get("/audios",[Audio::class,"getAll"]);
