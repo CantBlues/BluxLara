@@ -37,10 +37,14 @@ Route::get('/video/{id}', [VideoController::class, 'getById']);
 
 
 Route::get("/phone/apps", [PhoneUsage::class, "getApps"]);
-Route::post("/phone/app/edit",[PhoneUsage::class,"editApp"]);
+Route::post("/phone/app/edit", [PhoneUsage::class, "editApp"]);
 Route::get("/phone/usages/{appid}", [PhoneUsage::class, "getUsagesByAppId"]);
-Route::get("/phone/usages/recently/node",[PhoneUsage::class,"getRecentlyNode"]);
+Route::get("/phone/usages/recently/node", [PhoneUsage::class, "getRecentlyNode"]);
 
-Route::post("/phone/usages",[PhoneUsage::class, "dealUsages"]);
+Route::post("/phone/usages", [PhoneUsage::class, "dealUsages"]);
 
-Route::get("/audios",[Audio::class,"getAll"]);
+Route::get("/audios", [Audio::class, "getAll"]);
+
+Route::get("/test", function () {
+    return "";
+});

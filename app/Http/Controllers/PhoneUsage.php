@@ -25,6 +25,8 @@ class PhoneUsage extends Controller {
         $st = microtime(true);
 
         $existNode = $this->recentlyNode();
+        $apps = PhoneApp::all();
+        $apps = $apps->keyBy("package_name");
 
         foreach ($request->input() as $dailyUsage) {
             $dateNode = $dailyUsage["node"];
@@ -32,7 +34,7 @@ class PhoneUsage extends Controller {
             $dateNode = date($dateNode);
             $usageList = $dailyUsage["data"];
             if (!$existNode->contains($dateNode) && count($usageList) > 1) {
-                $ok = ModelsPhoneUsage::saveOneDay($dateNode, $usageList);
+                $ok = ModelsPhoneUsage::saveOneDay($dateNode, $usageList,$apps);
                 if (!$ok) return $this->failed("");
             }
         }
@@ -51,7 +53,7 @@ class PhoneUsage extends Controller {
     }
 
     public function recentlyNode() {
-        $recently = Carbon::now()->startOfDay()->subDays(10);
+        $recently = Carbon::now()->startOfDay()->subDays(9);
         $data = ModelsPhoneUsage::where('appid', PhoneApp::where("package_name", "android")->value("id"))->where("node", ">=", $recently)->pluck('node');
         return $data;
     }

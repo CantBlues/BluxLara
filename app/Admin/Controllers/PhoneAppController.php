@@ -21,6 +21,9 @@ class PhoneAppController extends AdminController
             $grid->column('id')->sortable();
             $grid->column('name')->editable();
             $grid->column('package_name');
+            $grid->column('ignore')->switch();
+            $grid->column('display')->switch();
+
         
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
@@ -42,6 +45,8 @@ class PhoneAppController extends AdminController
             $show->field('id');
             $show->field('name');
             $show->field('package_name');
+            $show->field('ignore');
+            $show->field('display');
         });
     }
 
@@ -56,6 +61,8 @@ class PhoneAppController extends AdminController
             $form->display('id');
             $form->text('name');
             $form->text('package_name');
+            $form->switch('ignore');
+            $form->switch('display');
         });
     }
 }
