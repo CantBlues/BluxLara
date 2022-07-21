@@ -48,7 +48,7 @@ class DailyTask extends Controller
         $lastmonth = [Carbon::now()->subDays(60),Carbon::now()->subDays(30)];
         $data["this_month"] = TaskType::selectRaw("count(tasks.id) as times,task_types.name,task_types.weight")
             ->join("tasks","task_types.id","=","tasks.type_id")->whereBetween("tasks.date",$thismonth)
-            ->groupBy("tasks.type_id")->where("tasks.mark",true)->get();
+            ->groupBy("tasks.type_id")->where("tasks.mark",true)->orderBy("times","desc")->get();
         $data["last_month"] = TaskType::selectRaw("count(tasks.id) as times,task_types.name,task_types.weight")
             ->join("tasks","task_types.id","=","tasks.type_id")->whereBetween("tasks.date",$lastmonth)
             ->groupBy("tasks.type_id")->where("tasks.mark",true)->get();
