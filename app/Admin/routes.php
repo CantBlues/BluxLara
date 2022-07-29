@@ -14,5 +14,6 @@ Route::group([
 
     $router->get('/', 'HomeController@index');
     $router->resource('apps','PhoneAppController');
+    $router->get('/chatroom', 'MessageController@index');
 
 });

@@ -54,6 +54,8 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection abilities
      * @property Grid\Column|Collection last_used_at
      * @property Grid\Column|Collection package_name
+     * @property Grid\Column|Collection ignore
+     * @property Grid\Column|Collection display
      * @property Grid\Column|Collection appid
      * @property Grid\Column|Collection usage
      * @property Grid\Column|Collection node
@@ -110,6 +112,8 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection abilities(string $label = null)
      * @method Grid\Column|Collection last_used_at(string $label = null)
      * @method Grid\Column|Collection package_name(string $label = null)
+     * @method Grid\Column|Collection ignore(string $label = null)
+     * @method Grid\Column|Collection display(string $label = null)
      * @method Grid\Column|Collection appid(string $label = null)
      * @method Grid\Column|Collection usage(string $label = null)
      * @method Grid\Column|Collection node(string $label = null)
@@ -171,6 +175,8 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection abilities
      * @property Show\Field|Collection last_used_at
      * @property Show\Field|Collection package_name
+     * @property Show\Field|Collection ignore
+     * @property Show\Field|Collection display
      * @property Show\Field|Collection appid
      * @property Show\Field|Collection usage
      * @property Show\Field|Collection node
@@ -227,6 +233,8 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection abilities(string $label = null)
      * @method Show\Field|Collection last_used_at(string $label = null)
      * @method Show\Field|Collection package_name(string $label = null)
+     * @method Show\Field|Collection ignore(string $label = null)
+     * @method Show\Field|Collection display(string $label = null)
      * @method Show\Field|Collection appid(string $label = null)
      * @method Show\Field|Collection usage(string $label = null)
      * @method Show\Field|Collection node(string $label = null)
