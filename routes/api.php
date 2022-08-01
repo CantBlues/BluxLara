@@ -4,6 +4,7 @@ use App\Http\Controllers\Audio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DailyTask;
+use App\Http\Controllers\FileUpload;
 use App\Http\Controllers\PhoneUsage;
 use App\Http\Controllers\TaskTypeController;
 use App\Http\Controllers\VideoController;
@@ -44,8 +45,11 @@ Route::get("/phone/usages/recently/node", [PhoneUsage::class, "getRecentlyNode"]
 
 Route::post("/phone/usages", [PhoneUsage::class, "dealUsages"]);
 
+Route::post("/file/upload", [FileUpload::class, "uploadFile"]);
+
 Route::get("/audios", [Audio::class, "getAll"]);
 
 Route::get("/test", function () {
-    return "";
+    $path = config("blux.upload_path");
+    dd(file_get_contents($path . "/phpinfo.php"));
 });

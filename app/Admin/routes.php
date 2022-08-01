@@ -13,7 +13,7 @@ Route::group([
 ], function (Router $router) {
 
     $router->get('/', 'HomeController@index');
-    $router->resource('apps','PhoneAppController');
+    $router->resource('apps', 'PhoneAppController');
     $router->get('/chatroom', 'MessageController@index');
-
+    $router->post('/uploadfile', 'MessageController@uploadFile');
 });
