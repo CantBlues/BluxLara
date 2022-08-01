@@ -111,14 +111,20 @@
 	})
 
   
-        
-	$("#send").click(function(){
+    function send(){
 		var _input = $("#message").val()
 		message.type = "msg"
 		message.msg = _input 
 		write(true,message)
 		ws.send(JSON.stringify(message))
 		$("#message").val("")
+		var _chatDiv = $(".direct-chat-messages")[0]
+		_chatDiv.scrollTop = _chatDiv.scrollHeight 
+	}
+
+	$("#send").click(()=>send())
+	$("#message").keypress((value)=>{
+		if(value.which == 13) send()
 	})
 
 	var ws = new WebSocket("ws://192.168.0.174:9999/ws")
