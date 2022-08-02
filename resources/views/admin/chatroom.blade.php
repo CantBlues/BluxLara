@@ -108,6 +108,8 @@
 		message.msg = response['_raw']
 		write(true,message)
 		ws.send(JSON.stringify(message))
+		var _chatDiv = $(".direct-chat-messages")[0]
+		_chatDiv.scrollTop = _chatDiv.scrollHeight 
 	})
 
   
@@ -142,6 +144,8 @@
 	ws.onmessage = function(event){
 		var data = JSON.parse(event.data)
 		write(false,data);
+		var _chatDiv = $(".direct-chat-messages")[0]
+		_chatDiv.scrollTop = _chatDiv.scrollHeight 
 	}
 
 
