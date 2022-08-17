@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class DailyTask extends Controller {
     public function mark(Request $q) {
         if ($q->has(['name', 'date', 'mark'])) {
-            $date = date("Y-m-d", $q->input("date") / 1000);
+            $date = date("Y-m-d", intval($q->input("date") / 1000));
             $name = $q->input('name');
             $typeId = TaskType::firstWhere("name", $name)["id"];
             if (!isset($typeId)) return $this->failed("Not exist the task");
@@ -23,7 +23,7 @@ class DailyTask extends Controller {
     }
 
     public function viewDaily($timestamp) {
-        $date = date("Y-m-d", $timestamp / 1000);
+        $date = date("Y-m-d", intval($timestamp / 1000));
         $data = Task::where("date", $date)->where('mark', true)->get();
         return $this->success($data);
     }
