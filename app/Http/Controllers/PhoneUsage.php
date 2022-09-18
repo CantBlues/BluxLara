@@ -34,7 +34,7 @@ class PhoneUsage extends Controller {
             $dateNode = date($dateNode);
             $usageList = $dailyUsage["data"];
             if (!$existNode->contains($dateNode) && count($usageList) > 1) {
-                $ok = ModelsPhoneUsage::saveOneDay($dateNode, $usageList,$apps);
+                $ok = ModelsPhoneUsage::saveOneDay($dateNode, $usageList, $apps);
                 if (!$ok) return $this->failed("");
             }
         }
@@ -60,6 +60,11 @@ class PhoneUsage extends Controller {
 
     public function getRecentlyNode() {
         $data = $this->recentlyNode();
+        return $this->success($data);
+    }
+
+    public function getUsageTopByDate($date) {
+        $data = ModelsPhoneUsage::where("node", $date)->orderBy("usage", "desc")->whereNotIn("appid", [125, 39])->limit(10)->get();
         return $this->success($data);
     }
 }
