@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Nodes;
 use App\Http\Controllers\Audio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -42,11 +43,13 @@ Route::get("/phone/apps", [PhoneUsage::class, "getApps"]);
 Route::post("/phone/app/edit", [PhoneUsage::class, "editApp"]);
 Route::get("/phone/usages/{appid}", [PhoneUsage::class, "getUsagesByAppId"]);
 Route::get("/phone/usages/recently/node", [PhoneUsage::class, "getRecentlyNode"]);
-Route::get("/phone/usages/top/{date}",[PhoneUsage::class,"getUsageTopByDate"]);
+Route::get("/phone/usages/top/{date}", [PhoneUsage::class, "getUsageTopByDate"]);
 
 Route::post("/phone/usages", [PhoneUsage::class, "dealUsages"]);
 
 Route::post("/file/upload", [FileUpload::class, "uploadFile"]);
+
+Route::post("/v2ray/nodes/save", [Nodes::class, "saveNodes"]);
 
 Route::get("/audios", [Audio::class, "getAll"]);
 

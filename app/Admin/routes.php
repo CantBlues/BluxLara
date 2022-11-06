@@ -14,6 +14,7 @@ Route::group([
 
     $router->get('/', 'HomeController@index');
     $router->resource('apps', 'PhoneAppController');
+    $router->resource('nodes', 'NodeController');
     $router->get('/chatroom', 'MessageController@index');
     $router->post('/uploadfile', 'MessageController@uploadFile');
 });
