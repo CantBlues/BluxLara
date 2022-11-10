@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Node extends Model {
 	use HasDateTimeFormatter;
+	protected $guarded = [];
+	static public $ColumnMaps = ["name as ps", "addr as add", "uid as id", "net", "type", "host", "tls", "protocol", "aid", "path", "ping", "delay", "speed"];
 
 	public function saveNodes($nodes) {
 		foreach ($nodes as $node) {
@@ -25,8 +27,8 @@ class Node extends Model {
 			$ping = $node["ping"];
 			$delay = $node["delay"];
 			$speed = $node["speed"];
-			if ($addr == "127.0.0.1" or $port <= 0 or $ping < 10 or $ping > 1000) continue;
-			$this->updateOrInsert(["addr" => $addr, "port" => $port], [
+			if ($addr == "127.0.0.1" or $port <= 0 or $ping > 1000) continue;
+			$this->updateOrCreate(["addr" => $addr, "port" => $port], [
 				"name" => $name, "uid" => $uid, "net" => $net,
 				"type" => $type, "host" => $host, "tls" => $tls, "protocol" => $protocol,
 				"aid" => $aid, "path" => $path, "delay" => $delay, "speed" => $speed, "ping" => $ping

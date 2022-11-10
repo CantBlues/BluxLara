@@ -49,6 +49,7 @@ Route::post("/phone/usages", [PhoneUsage::class, "dealUsages"]);
 
 Route::post("/file/upload", [FileUpload::class, "uploadFile"]);
 
+Route::get("/v2ray/nodes", [Nodes::class, "getNodes"]);
 Route::post("/v2ray/nodes/save", [Nodes::class, "saveNodes"]);
 
 Route::get("/audios", [Audio::class, "getAll"]);

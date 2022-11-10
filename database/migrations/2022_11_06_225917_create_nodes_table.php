@@ -24,9 +24,9 @@ class CreateNodesTable extends Migration {
             $table->string('protocol')->default('');
             $table->string('aid')->nullable();
             $table->string('path')->nullable();
-            $table->integer('ping')->nullable();
-            $table->string('delay')->nullable();
-            $table->string('speed')->nullable();
+            $table->integer('ping')->default(0);
+            $table->string('delay')->default('');
+            $table->string('speed')->default('');
             $table->timestamps();
         });
     }

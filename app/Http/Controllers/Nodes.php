@@ -12,4 +12,9 @@ class Nodes extends Controller {
         $nodeModel = new Node();
         $nodeModel->saveNodes($nodes);
     }
+
+    public function getNodes() {
+        $nodes = Node::latest("updated_at")->get(Node::$ColumnMaps);
+        return $this->success($nodes);
+    }
 }
