@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Node extends Model {
 	use HasDateTimeFormatter;
 	protected $guarded = [];
-	static public $ColumnMaps = ["name as ps", "addr as add", "uid as id", "net", "type", "host", "tls", "protocol", "aid", "path", "ping", "delay", "speed"];
+	static public $ColumnMaps = ["name as ps", "addr as add", "uid as bid", "net", "type", "host", "tls", "protocol", "port", "aid", "path", "ping", "delay", "speed"];
 
 	public function saveNodes($nodes) {
 		foreach ($nodes as $node) {
