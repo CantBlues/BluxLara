@@ -129,7 +129,7 @@
 		if(value.which == 13) send()
 	})
 
-	var ws = new WebSocket("ws://192.168.0.174:9999/ws")
+	var ws = new WebSocket("ws://192.168.0.141:9999/ws")
 
 	ws.onclose = function(){
 		message.msg = "Connection Closed."

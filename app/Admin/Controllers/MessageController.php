@@ -17,7 +17,7 @@ class MessageController extends AdminController {
     }
 
     public function uploadFile(Request $request) {
-        $file = Storage::disk('cdisk')->put($request->input("name"), $request->file("file"));
-        return Storage::disk('cdisk')->url($file);
+        $file = Storage::disk('public')->put($request->input("name"), $request->file("file"));
+        return Storage::disk('public')->url($file);
     }
 }
