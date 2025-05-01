@@ -34,17 +34,23 @@ class TaskTypeController extends Controller {
         return $this->success(Habbit::get());
     }
 
-    public function recordHabbit(Request $r){
+    public function recordHabbit(Request $r) {
         $habbit = $r->input("id");
         $exist = HabbitRecord::whereDate("created_at", Carbon::today())->where("habbit_id", $habbit)->first();
-        if($exist){
+        if ($exist) {
             HabbitRecord::whereDate("created_at", Carbon::today())->where("habbit_id", $habbit)->increment("weight");
-        }else{
+        } else {
             $record = new HabbitRecord();
             $record->habbit_id = $habbit;
             $record->weight = 1;
             $record->save();
         }
         return $this->success("");
+    }
+
+    public function getHabbitRecord(Request $r) {
+        $habbit = $r->input("id");
+        $record = HabbitRecord::where("habbit_id", $habbit)->get();
+        return $this->success($record);
     }
 }

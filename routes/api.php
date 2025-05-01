@@ -56,6 +56,7 @@ Route::get("/audios", [Audio::class, "getAll"]);
 
 Route::get("/habbit_types",[TaskTypeController::class,"getHabbitTypes"]);
 Route::post("/habbit/record",[TaskTypeController::class,"recordHabbit"]);
+Route::get("habbit/record",[TaskTypeController::class,"getHabbitRecord"]);
 
 Route::get("/test", function () {
     $path = config("blux.upload_path");
