@@ -54,6 +54,9 @@ Route::post("/v2ray/nodes/save", [Nodes::class, "saveNodes"]);
 
 Route::get("/audios", [Audio::class, "getAll"]);
 
+Route::get("/habbit_types",[TaskTypeController::class,"getHabbitTypes"]);
+Route::post("/habbit/record",[TaskTypeController::class,"recordHabbit"]);
+
 Route::get("/test", function () {
     $path = config("blux.upload_path");
     dd(file_get_contents($path . "/phpinfo.php"));

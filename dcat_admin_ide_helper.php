@@ -45,6 +45,9 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection payload
      * @property Grid\Column|Collection queue
      * @property Grid\Column|Collection uuid
+     * @property Grid\Column|Collection habbit_id
+     * @property Grid\Column|Collection weight
+     * @property Grid\Column|Collection img
      * @property Grid\Column|Collection audio
      * @property Grid\Column|Collection video
      * @property Grid\Column|Collection addr
@@ -72,7 +75,6 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection usage
      * @property Grid\Column|Collection classify
      * @property Grid\Column|Collection sort
-     * @property Grid\Column|Collection weight
      * @property Grid\Column|Collection date
      * @property Grid\Column|Collection mark
      * @property Grid\Column|Collection type_id
@@ -114,6 +116,9 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection payload(string $label = null)
      * @method Grid\Column|Collection queue(string $label = null)
      * @method Grid\Column|Collection uuid(string $label = null)
+     * @method Grid\Column|Collection habbit_id(string $label = null)
+     * @method Grid\Column|Collection weight(string $label = null)
+     * @method Grid\Column|Collection img(string $label = null)
      * @method Grid\Column|Collection audio(string $label = null)
      * @method Grid\Column|Collection video(string $label = null)
      * @method Grid\Column|Collection addr(string $label = null)
@@ -141,7 +146,6 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection usage(string $label = null)
      * @method Grid\Column|Collection classify(string $label = null)
      * @method Grid\Column|Collection sort(string $label = null)
-     * @method Grid\Column|Collection weight(string $label = null)
      * @method Grid\Column|Collection date(string $label = null)
      * @method Grid\Column|Collection mark(string $label = null)
      * @method Grid\Column|Collection type_id(string $label = null)
@@ -188,6 +192,9 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection payload
      * @property Show\Field|Collection queue
      * @property Show\Field|Collection uuid
+     * @property Show\Field|Collection habbit_id
+     * @property Show\Field|Collection weight
+     * @property Show\Field|Collection img
      * @property Show\Field|Collection audio
      * @property Show\Field|Collection video
      * @property Show\Field|Collection addr
@@ -215,7 +222,6 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection usage
      * @property Show\Field|Collection classify
      * @property Show\Field|Collection sort
-     * @property Show\Field|Collection weight
      * @property Show\Field|Collection date
      * @property Show\Field|Collection mark
      * @property Show\Field|Collection type_id
@@ -257,6 +263,9 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection payload(string $label = null)
      * @method Show\Field|Collection queue(string $label = null)
      * @method Show\Field|Collection uuid(string $label = null)
+     * @method Show\Field|Collection habbit_id(string $label = null)
+     * @method Show\Field|Collection weight(string $label = null)
+     * @method Show\Field|Collection img(string $label = null)
      * @method Show\Field|Collection audio(string $label = null)
      * @method Show\Field|Collection video(string $label = null)
      * @method Show\Field|Collection addr(string $label = null)
@@ -284,7 +293,6 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection usage(string $label = null)
      * @method Show\Field|Collection classify(string $label = null)
      * @method Show\Field|Collection sort(string $label = null)
-     * @method Show\Field|Collection weight(string $label = null)
      * @method Show\Field|Collection date(string $label = null)
      * @method Show\Field|Collection mark(string $label = null)
      * @method Show\Field|Collection type_id(string $label = null)
