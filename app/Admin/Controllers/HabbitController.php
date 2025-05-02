@@ -8,25 +8,22 @@ use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Dcat\Admin\Http\Controllers\AdminController;
 
-class HabbitController extends AdminController
-{
+class HabbitController extends AdminController {
     /**
      * Make a grid builder.
      *
      * @return Grid
      */
-    protected function grid()
-    {
+    protected function grid() {
         return Grid::make(new Habbit(), function (Grid $grid) {
             $grid->column('id')->sortable();
             $grid->column('name');
-            $grid->column('img');
+            $grid->column('img')->image();
             $grid->column('created_at');
             $grid->column('updated_at')->sortable();
-        
+
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
-        
             });
         });
     }
@@ -38,8 +35,7 @@ class HabbitController extends AdminController
      *
      * @return Show
      */
-    protected function detail($id)
-    {
+    protected function detail($id) {
         return Show::make($id, new Habbit(), function (Show $show) {
             $show->field('id');
             $show->field('name');
@@ -54,13 +50,12 @@ class HabbitController extends AdminController
      *
      * @return Form
      */
-    protected function form()
-    {
+    protected function form() {
         return Form::make(new Habbit(), function (Form $form) {
             $form->display('id');
             $form->text('name');
-            $form->text('img');
-        
+            $form->image('img')->saveFullUrl();
+
             $form->display('created_at');
             $form->display('updated_at');
         });
