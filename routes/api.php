@@ -8,6 +8,7 @@ use App\Http\Controllers\DailyTask;
 use App\Http\Controllers\FileUpload;
 use App\Http\Controllers\PhoneUsage;
 use App\Http\Controllers\TaskTypeController;
+use App\Http\Controllers\ToolsController;
 use App\Http\Controllers\VideoController;
 
 /*
@@ -57,6 +58,8 @@ Route::get("/audios", [Audio::class, "getAll"]);
 Route::get("/habbit_types", [TaskTypeController::class, "getHabbitTypes"]);
 Route::post("/habbit/record", [TaskTypeController::class, "recordHabbit"]);
 Route::get("habbit/record", [TaskTypeController::class, "getHabbitRecord"]);
+
+Route::get("/boost", [ToolsController::class, "getBoost"]);
 
 Route::get("/test", function () {
     $path = config("blux.upload_path");

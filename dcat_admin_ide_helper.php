@@ -39,6 +39,7 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection deleted_at
      * @property Grid\Column|Collection md5
      * @property Grid\Column|Collection path
+     * @property Grid\Column|Collection content
      * @property Grid\Column|Collection connection
      * @property Grid\Column|Collection exception
      * @property Grid\Column|Collection failed_at
@@ -110,6 +111,7 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection deleted_at(string $label = null)
      * @method Grid\Column|Collection md5(string $label = null)
      * @method Grid\Column|Collection path(string $label = null)
+     * @method Grid\Column|Collection content(string $label = null)
      * @method Grid\Column|Collection connection(string $label = null)
      * @method Grid\Column|Collection exception(string $label = null)
      * @method Grid\Column|Collection failed_at(string $label = null)
@@ -186,6 +188,7 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection deleted_at
      * @property Show\Field|Collection md5
      * @property Show\Field|Collection path
+     * @property Show\Field|Collection content
      * @property Show\Field|Collection connection
      * @property Show\Field|Collection exception
      * @property Show\Field|Collection failed_at
@@ -257,6 +260,7 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection deleted_at(string $label = null)
      * @method Show\Field|Collection md5(string $label = null)
      * @method Show\Field|Collection path(string $label = null)
+     * @method Show\Field|Collection content(string $label = null)
      * @method Show\Field|Collection connection(string $label = null)
      * @method Show\Field|Collection exception(string $label = null)
      * @method Show\Field|Collection failed_at(string $label = null)

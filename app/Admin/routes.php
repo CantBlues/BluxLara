@@ -17,6 +17,7 @@ Route::group([
     $router->resource('nodes', 'NodeController');
     $router->get('/chatroom', 'MessageController@index');
     $router->post('/uploadfile', 'MessageController@uploadFile');
-    $router->resource("habbit_types","HabbitController");
-    $router->resource("habbit_records","HabbitRecordController");
+    $router->resource("habbit_types", "HabbitController");
+    $router->resource("habbit_records", "HabbitRecordController");
+    $router->resource("boost", "BoostTemplateController");
 });
