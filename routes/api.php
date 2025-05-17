@@ -60,6 +60,7 @@ Route::post("/habbit/record", [TaskTypeController::class, "recordHabbit"]);
 Route::get("habbit/record", [TaskTypeController::class, "getHabbitRecord"]);
 
 Route::get("/boost", [ToolsController::class, "getBoost"]);
+Route::get("/judge_rule", [ToolsController::class, "getJudgeRule"]);
 
 Route::get("/test", function () {
     $path = config("blux.upload_path");
