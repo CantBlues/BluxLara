@@ -21,4 +21,5 @@ Route::group([
     $router->resource("habbit_records", "HabbitRecordController");
     $router->resource("boost", "BoostTemplateController");
     $router->resource("judge_rule", "JudgeRuleController");
+    $router->resource("content_principle", "ContentPrincipleController");
 });
